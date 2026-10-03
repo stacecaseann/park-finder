@@ -1,0 +1,10 @@
+/**
+ * Shared formatting helpers.
+ * Add utilities here as the site grows.
+ */
+
+/** Capitalize the first letter of a string. */
+export function capitalize(value: string): string {
+  if (!value) return value;
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
