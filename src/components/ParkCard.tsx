@@ -9,13 +9,22 @@ interface ParkCardProps {
   /** Distance from the user in miles; shown only when provided. */
   distanceMiles?: number;
   experienceMatch?: ParkExperienceMatch;
+  compact?: boolean;
 }
 
-function ParkCard({ park, distanceMiles, experienceMatch }: ParkCardProps) {
+function ParkCard({
+  park,
+  distanceMiles,
+  experienceMatch,
+  compact = false,
+}: ParkCardProps) {
   const highlights = getParkHighlights(park);
+  const cardClassName = compact
+    ? `park-card park-card-compact${experienceMatch ? " park-card-compact-recommended" : ""}`
+    : "park-card";
 
   return (
-    <article className="park-card">
+    <article className={cardClassName}>
       {park.mainImage.src ? (
         <img
           className="park-card-image"
@@ -49,11 +58,13 @@ function ParkCard({ park, distanceMiles, experienceMatch }: ParkCardProps) {
             </p>
             <p className="park-card-why">Why it matches</p>
             <ul className="park-card-match-reasons">
-              {experienceMatch.contributingFeatures.slice(0, 4).map((feature) => (
+              {experienceMatch.contributingFeatures
+                .slice(0, compact ? 3 : 4)
+                .map((feature) => (
                 <li key={feature.label}>
                   <span aria-hidden="true">✓</span> {feature.label}
                 </li>
-              ))}
+                ))}
             </ul>
           </div>
         )}

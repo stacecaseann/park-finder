@@ -305,6 +305,11 @@ html:has(.home-hero) {
   margin-top: 2rem;
 }
 
+.parks-results .park-grid-compact {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+  gap: 0.85rem;
+}
+
 /* Park card */
 .park-card {
   display: flex;
@@ -316,11 +321,23 @@ html:has(.home-hero) {
   box-shadow: 0 1px 3px rgba(46, 56, 34, 0.08);
 }
 
+.park-card-compact {
+  flex-direction: column;
+  min-width: 0;
+}
+
 .park-card-image {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+}
+
+.park-card-compact .park-card-image {
+  flex: initial;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 .park-card-image-placeholder {
@@ -331,11 +348,20 @@ html:has(.home-hero) {
   font-size: 2.5rem;
 }
 
+.park-card-compact .park-card-image-placeholder {
+  min-height: 0;
+}
+
 .park-card-body {
   display: flex;
   flex-direction: column;
   flex: 1;
   padding: 1.25rem;
+}
+
+.park-card-compact .park-card-body {
+  min-width: 0;
+  padding: 0.85rem;
 }
 
 .park-card-name {
@@ -349,6 +375,11 @@ html:has(.home-hero) {
   color: var(--color-text-muted);
 }
 
+.park-card-compact .park-card-city,
+.park-card-compact .park-card-distance {
+  margin-bottom: 0.45rem;
+}
+
 .park-card-features {
   display: flex;
   flex-wrap: wrap;
@@ -356,6 +387,34 @@ html:has(.home-hero) {
   list-style: none;
   margin: 0 0 1.25rem;
   padding: 0;
+}
+
+.park-card-compact .park-card-features {
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.park-card-compact .park-card-features li {
+  padding-inline: 0.5rem;
+  font-size: 0.72rem;
+}
+
+.park-card-compact .park-card-experience {
+  margin-bottom: 0.75rem;
+  padding: 0.6rem;
+}
+
+.park-card-compact .park-card-match-reasons {
+  grid-template-columns: 1fr;
+}
+
+.park-card-compact-recommended .park-card-features {
+  display: none;
+}
+
+.park-card-compact .park-card-link {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.9rem;
 }
 
 .park-card-features li {
@@ -1078,6 +1137,10 @@ html:has(.home-hero) {
     flex-direction: column;
   }
 
+  .parks-results .park-grid-compact {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+  }
+
   .parks-sidebar {
     display: none;
   }
@@ -1118,6 +1181,14 @@ html:has(.home-hero) {
 
   .site-main {
     padding-block: 2rem;
+  }
+
+  .parks-results .park-grid-compact {
+    grid-template-columns: 1fr;
+  }
+
+  .view-toggle-btn {
+    padding-inline: 0.75rem;
   }
 
   .experience-discovery {

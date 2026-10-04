@@ -23,7 +23,7 @@ function ParksPage() {
   const [selectedExperienceId, setSelectedExperienceId] =
     useState<ParkExperienceId | null>(null);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const [view, setView] = useState<"list" | "map">("list");
+  const [view, setView] = useState<"list" | "compact" | "map">("list");
   const { location, status, error, requestLocation, clearLocation } =
     useUserLocation();
   const [radius, setRadius] = useState<RadiusSelection>(10);
@@ -323,6 +323,18 @@ function ParksPage() {
               <button
                 type="button"
                 className={
+                  view === "compact"
+                    ? "view-toggle-btn active"
+                    : "view-toggle-btn"
+                }
+                aria-pressed={view === "compact"}
+                onClick={() => setView("compact")}
+              >
+                Compact
+              </button>
+              <button
+                type="button"
+                className={
                   view === "map" ? "view-toggle-btn active" : "view-toggle-btn"
                 }
                 aria-pressed={view === "map"}
@@ -365,14 +377,21 @@ function ParksPage() {
           )}
 
           {displayedParks.length > 0 ? (
-            view === "list" ? (
-              <div className="park-grid">
+            view !== "map" ? (
+              <div
+                className={
+                  view === "compact"
+                    ? "park-grid park-grid-compact"
+                    : "park-grid"
+                }
+              >
                 {displayedParks.map((park) => (
                   <ParkCard
                     key={park.id}
                     park={park}
                     distanceMiles={distances.get(park.id)}
                     experienceMatch={experienceMatches.get(park.id)}
+                    compact={view === "compact"}
                   />
                 ))}
               </div>
