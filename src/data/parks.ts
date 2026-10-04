@@ -1667,8 +1667,8 @@ export const parks: Park[] = [
     state: "Utah",
     zip: "84660",
     address: "32 N Maple Leaf Drive, Spanish Fork, UT 84660",
-    latitude: 40.09294,
-    longitude: -111.61558,
+    latitude: 40.110563,
+    longitude: -111.608039,
     website:
       "https://www.spanishfork.gov/recreation-parks-and-culture/parks-trails-camping-and-facilities/city-parks/electric-park/",
     description:
