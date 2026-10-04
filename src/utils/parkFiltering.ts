@@ -18,7 +18,9 @@ export function getFilterById(id: string): FilterDefinition | undefined {
 export function parkMatchesSearch(park: Park, query: string): boolean {
   const q = query.trim().toLowerCase();
   if (q === "") return true;
-  return park.name.toLowerCase().includes(q) || park.city.toLowerCase().includes(q);
+  return (
+    park.name.toLowerCase().includes(q) || park.city.toLowerCase().includes(q)
+  );
 }
 
 /**

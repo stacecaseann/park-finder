@@ -123,6 +123,12 @@ export const filterCategories: FilterCategory[] = [
       { id: "soccer", label: "Soccer", path: "activities.soccer" },
       { id: "baseball", label: "Baseball", path: "activities.baseball" },
       {
+        id: "pickleball",
+        label: "Pickleball",
+        path: "activities.pickleball",
+      },
+      { id: "futsal", label: "Futsal", path: "activities.futsal" },
+      {
         id: "fitness-area",
         label: "Fitness Area",
         path: "activities.fitnessArea",

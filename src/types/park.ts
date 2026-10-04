@@ -32,6 +32,8 @@ export interface ActivityFeatures {
   volleyball: boolean;
   soccer: boolean;
   baseball: boolean;
+  pickleball: boolean;
+  futsal: boolean;
   fitnessArea: boolean;
   /** Open / multi-use grassy field (not a dedicated sport field). */
   openField: boolean;
@@ -91,5 +93,7 @@ export interface Park {
   amenities: AmenityFeatures;
   dogs: DogsPolicy;
   features: string[];
+  /** Temporary conditions or project updates, separate from permanent features. */
+  notices?: string[];
   notes: string[];
 }

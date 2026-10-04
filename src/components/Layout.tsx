@@ -13,7 +13,11 @@ function Layout() {
       <header className="site-header">
         <div className="container site-header-inner">
           <NavLink to="/" className="site-logo">
-            Park Quest
+            <img
+              className="site-logo-image"
+              src="/images/logos/Sunny%20Park%20Quest%20Playground%20Logo.png"
+              alt="Park Quest"
+            />
           </NavLink>
           <nav className="site-nav" aria-label="Main navigation">
             <ul>

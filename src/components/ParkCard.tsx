@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import type { Park } from "../types/park";
 import { getParkHighlights } from "../utils/parkHighlights";
+import { formatDistanceMiles } from "../utils/distance";
 
 interface ParkCardProps {
   park: Park;
+  /** Distance from the user in miles; shown only when provided. */
+  distanceMiles?: number;
 }
 
-function ParkCard({ park }: ParkCardProps) {
+function ParkCard({ park, distanceMiles }: ParkCardProps) {
   const highlights = getParkHighlights(park);
 
   return (
@@ -16,6 +19,8 @@ function ParkCard({ park }: ParkCardProps) {
           className="park-card-image"
           src={park.mainImage.src}
           alt={park.mainImage.alt}
+          loading="lazy"
+          decoding="async"
         />
       ) : (
         <div
@@ -29,6 +34,11 @@ function ParkCard({ park }: ParkCardProps) {
       <div className="park-card-body">
         <h2 className="park-card-name">{park.name}</h2>
         <p className="park-card-city">{park.city}</p>
+        {distanceMiles !== undefined && (
+          <p className="park-card-distance">
+            {formatDistanceMiles(distanceMiles)}
+          </p>
+        )}
         {highlights.length > 0 && (
           <ul className="park-card-features">
             {highlights.map((label) => (

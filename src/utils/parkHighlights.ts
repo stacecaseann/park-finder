@@ -29,6 +29,8 @@ const highlightPriorityIds = [
   "basketball",
   "soccer",
   "baseball",
+  "pickleball",
+  "futsal",
   "volleyball",
   "fitness-area",
   "open-field",
