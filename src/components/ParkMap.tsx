@@ -15,6 +15,7 @@ import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import type { Park } from "../types/park";
 import { getParkHighlights } from "../utils/parkHighlights";
+import type { ParkExperienceMatch } from "../data/parkExperiences";
 
 /**
  * Leaflet's default marker icons are referenced by relative URL and break
@@ -88,9 +89,14 @@ function FitBounds({ parks, userLocation }: FitBoundsProps) {
 interface ParkMapProps {
   parks: Park[];
   userLocation?: { latitude: number; longitude: number } | null;
+  experienceMatches?: ReadonlyMap<string, ParkExperienceMatch>;
 }
 
-function ParkMap({ parks, userLocation = null }: ParkMapProps) {
+function ParkMap({
+  parks,
+  userLocation = null,
+  experienceMatches,
+}: ParkMapProps) {
   const mappable = mappableParks(parks);
   const skipped = parks.length - mappable.length;
 
@@ -129,22 +135,32 @@ function ParkMap({ parks, userLocation = null }: ParkMapProps) {
             <Popup>Your location</Popup>
           </CircleMarker>
         )}
-        {mappable.map((park) => (
-          <Marker key={park.id} position={[park.latitude, park.longitude]}>
-            <Popup>
-              <div className="park-popup">
-                <strong className="park-popup-name">{park.name}</strong>
-                <span className="park-popup-city">{park.city}</span>
-                {getParkHighlights(park, 3).length > 0 && (
-                  <span className="park-popup-features">
-                    {getParkHighlights(park, 3).join(" · ")}
-                  </span>
-                )}
-                <Link to={`/parks/${park.id}`}>View Park</Link>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+        {mappable.map((park) => {
+          const match = experienceMatches?.get(park.id);
+          const highlights = getParkHighlights(park, 3);
+
+          return (
+            <Marker key={park.id} position={[park.latitude, park.longitude]}>
+              <Popup>
+                <div className="park-popup">
+                  <strong className="park-popup-name">{park.name}</strong>
+                  <span className="park-popup-city">{park.city}</span>
+                  {match && (
+                    <span className="park-popup-match">
+                      {match.quality.label} for {match.experienceName}
+                    </span>
+                  )}
+                  {highlights.length > 0 && (
+                    <span className="park-popup-features">
+                      {highlights.join(" · ")}
+                    </span>
+                  )}
+                  <Link to={`/parks/${park.id}`}>View Park</Link>
+                </div>
+              </Popup>
+            </Marker>
+          );
+        })}
       </MapContainer>
       {skipped > 0 && (
         <p className="park-map-note">

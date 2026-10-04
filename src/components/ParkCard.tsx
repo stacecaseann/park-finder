@@ -2,14 +2,16 @@ import { Link } from "react-router-dom";
 import type { Park } from "../types/park";
 import { getParkHighlights } from "../utils/parkHighlights";
 import { formatDistanceMiles } from "../utils/distance";
+import type { ParkExperienceMatch } from "../data/parkExperiences";
 
 interface ParkCardProps {
   park: Park;
   /** Distance from the user in miles; shown only when provided. */
   distanceMiles?: number;
+  experienceMatch?: ParkExperienceMatch;
 }
 
-function ParkCard({ park, distanceMiles }: ParkCardProps) {
+function ParkCard({ park, distanceMiles, experienceMatch }: ParkCardProps) {
   const highlights = getParkHighlights(park);
 
   return (
@@ -38,6 +40,22 @@ function ParkCard({ park, distanceMiles }: ParkCardProps) {
           <p className="park-card-distance">
             {formatDistanceMiles(distanceMiles)}
           </p>
+        )}
+        {experienceMatch && (
+          <div className="park-card-experience">
+            <p className="park-card-match">
+              {experienceMatch.quality.label} for{" "}
+              {experienceMatch.experienceName}
+            </p>
+            <p className="park-card-why">Why it matches</p>
+            <ul className="park-card-match-reasons">
+              {experienceMatch.contributingFeatures.slice(0, 4).map((feature) => (
+                <li key={feature.label}>
+                  <span aria-hidden="true">✓</span> {feature.label}
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
         {highlights.length > 0 && (
           <ul className="park-card-features">
