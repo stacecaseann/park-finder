@@ -361,8 +361,8 @@ export const parks: Park[] = [
     state: "Utah",
     zip: "84660",
     address: "2382 E Purple Sage Dr, Spanish Fork, UT 84660",
-    latitude: null,
-    longitude: null,
+    latitude: 40.123161338184566,
+    longitude: -111.61405814557722,
     website:
       "https://www.spanishfork.gov/recreation-parks-and-culture/parks-campgrounds-and-facilities/city-parks/legacy-farms/",
     description:
@@ -923,8 +923,8 @@ export const parks: Park[] = [
     state: "Utah",
     zip: "84660",
     address: "572 S 600 E, Spanish Fork, UT 84660",
-    latitude: null,
-    longitude: null,
+    latitude: 40.131503000374046,
+    longitude: -111.64156375563648,
     website:
       "https://www.spanishfork.gov/recreation-parks-and-culture/parks-trails-camping-and-facilities/city-parks/centennial-park/",
     description:
@@ -1188,8 +1188,8 @@ export const parks: Park[] = [
     state: "Utah",
     zip: "84663",
     address: "Hobble Creek Canyon Rd, Springville, UT 84663",
-    latitude: null,
-    longitude: null,
+    latitude: 40.16292188338934,
+    longitude: -111.50121745030523,
     website:
       "https://www.springvilleutah.gov/parks-recreation/parks/canyon-parks/kellys-grove/",
     description:
@@ -1320,8 +1320,8 @@ export const parks: Park[] = [
     state: "Utah",
     zip: "84660",
     address: "3300 E Powerhouse Rd, Spanish Fork, UT 84660",
-    latitude: null,
-    longitude: null,
+    latitude: 40.0827656562788,
+    longitude: -111.60098493393717,
     website:
       "https://www.spanishfork.gov/recreation-parks-and-culture/parks-trails-camping-and-facilities/city-parks/canyon-view-park/",
     description:
